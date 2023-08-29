@@ -53,6 +53,7 @@ const Notes = () => {
               created_at={note.created_at}
               description={note.description}
               key={`${note.title}1`}
+              setShowDeleteAlert={setShowDeleteAlert}
               tag={note.tag}
               title={note.title}
             />
