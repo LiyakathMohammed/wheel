@@ -1,12 +1,19 @@
 import React from "react";
 
 import moment from "moment";
-import { Clock } from "neetoicons";
+import { Clock, Delete } from "neetoicons";
 import { Tag, Avatar } from "neetoui";
 
 import { useUserState } from "contexts/user";
 
-const Card = ({ title, description, assignedContactId, tag, created_at }) => {
+const Card = ({
+  title,
+  description,
+  assignedContactId,
+  tag,
+  created_at,
+  setShowDeleteAlert,
+}) => {
   const { user } = useUserState();
 
   return (
@@ -16,6 +23,10 @@ const Card = ({ title, description, assignedContactId, tag, created_at }) => {
           <p className="mt-1 inline-block text-lg font-medium leading-tight text-black">
             {title}
           </p>
+          <Delete
+            className="inline-block"
+            onClick={() => setShowDeleteAlert(true)}
+          />
           <p className="border-grey my-3 mt-2 block w-full border-b-2 pb-4 text-gray-600">
             {description}
           </p>
