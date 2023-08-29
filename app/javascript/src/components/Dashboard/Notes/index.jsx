@@ -50,7 +50,7 @@ const Notes = () => {
           {notes.map(note => (
             <Card
               assignedContactId={note.assignedContactId}
-              created_at={new Date()}
+              created_at={note.created_at}
               description={note.description}
               key={`${note.title}1`}
               tag={note.tag}

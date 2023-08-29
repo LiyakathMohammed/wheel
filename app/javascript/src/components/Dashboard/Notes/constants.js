@@ -13,6 +13,7 @@ export const NOTES_SEED_VALUES = {
     "Description Goes Here. Description Goes Here. Description Goes Here. Description Goes Here. Description Goes Here. Description Goes Here. Description Goes Here. Description Goes Here. Description Goes Here. ",
   assignedContactId: "1",
   tag: "Getting Started",
+  created_at: "2023-08-29T19:01:08+05:30",
 };
 export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
   title: yup.string().required("Title is required"),

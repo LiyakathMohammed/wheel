@@ -23,11 +23,7 @@ const Card = ({ title, description, assignedContactId, tag, created_at }) => {
             <Tag className="mt-2" label={tag} />
             <p className="mt-2 flex items-center text-sm text-gray-600">
               <Clock className="mr-1 h-4 w-4" />
-              {moment
-                .utc(created_at.created_at)
-                .local()
-                .startOf("seconds")
-                .fromNow()}
+              {moment.utc(created_at).local().startOf("seconds").fromNow()}
               <Avatar
                 className="ml-2"
                 size="small"
