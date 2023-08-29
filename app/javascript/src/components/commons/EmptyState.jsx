@@ -24,7 +24,7 @@ const EmptyState = ({
             icon="ri-add-fill"
             label={primaryActionLabel}
             size="small"
-            type="primary"
+            type="button"
             onClick={primaryAction}
           />
         )}

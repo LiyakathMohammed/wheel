@@ -2,6 +2,7 @@ import Login from "components/Authentication/Login";
 import PasswordReset from "components/Authentication/ResetPassword";
 import Signup from "components/Authentication/Signup";
 import Dashboard from "components/Dashboard";
+import Contacts from "components/Dashboard/Contacts";
 import Notes from "components/Dashboard/Notes";
 import Settings from "components/Dashboard/Settings";
 
@@ -13,6 +14,7 @@ export const SETTINGS_PATH = "/settings";
 export const LOGIN_PATH = "/login";
 export const SIGNUP_PATH = "/signup";
 export const RESET_PASSWORD_PATH = "/my/password/new";
+export const CONTACTS_PATH = "/contacts";
 
 export const AUTH_ROUTES = [
   {
@@ -39,5 +41,9 @@ export const DASHBOARD_ROUTES = [
   {
     path: SETTINGS_PATH,
     component: Settings,
+  },
+  {
+    path: CONTACTS_PATH,
+    component: Contacts,
   },
 ];

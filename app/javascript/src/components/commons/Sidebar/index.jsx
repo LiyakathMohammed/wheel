@@ -47,7 +47,6 @@ const Sidebar = () => {
   return (
     <NeetoUISidebar
       appName={APP_NAME}
-      changelogProps={{ id: "neetochangelog-trigger" }}
       navLinks={SIDENAV_LINKS}
       organizationInfo={{
         name: "Wheel",
