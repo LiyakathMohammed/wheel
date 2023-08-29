@@ -31,15 +31,20 @@ const Card = ({
             {description}
           </p>
           <div className="flex w-full items-center justify-between">
-            <Tag className="mt-2" label={tag} />
+            <Tag className="mt-2" label={tag.value} />
             <p className="mt-2 flex items-center text-sm text-gray-600">
               <Clock className="mr-1 h-4 w-4" />
-              {moment.utc(created_at).local().startOf("seconds").fromNow()}
+              <Tooltip
+                content={moment(created_at).format("dddd, h:mm a")}
+                position="bottom"
+              >
+                {moment.utc(created_at).local().startOf("seconds").fromNow()}
+              </Tooltip>
               <Avatar
                 className="ml-2"
                 size="small"
                 user={{
-                  name: `${user.first_name} ${user.last_name} ${assignedContactId}`,
+                  name: `${user.first_name} ${user.last_name} ${assignedContact.value}`,
                   imageUrl: user.profile_image_path,
                 }}
               />
