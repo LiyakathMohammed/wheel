@@ -1,7 +1,8 @@
 import React from "react";
 
 import { Formik, Form as FormikForm } from "formik";
-import { Button, Pane } from "neetoui";
+import moment from "moment";
+import { Button, Pane, Toastr } from "neetoui";
 import { Input, Textarea, Select } from "neetoui/formik";
 
 import { TAGS } from "./constants";
@@ -9,18 +10,20 @@ import { TAGS } from "./constants";
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../../constants";
 
 const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
-  const handleSubmit = ({ title, description, assignedContact, tag }) => {
+  const handleSubmit = values => {
     const updatedNotes = [
       ...notes,
       {
-        title,
-        description,
-        assignedContactId: assignedContact.value,
-        tag: tag.value,
+        title: values.title,
+        description: values.description,
+        assignedContact: { ...values.assignedContact },
+        tag: { ...values.tag },
+        created_at: moment().format(),
       },
     ];
     setNotes(updatedNotes);
     setShowPane(false);
+    Toastr.success("Note has been added Successfully.");
   };
 
   const contactList = [
@@ -63,6 +66,8 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
             />
             <div className="w-full space-y-0">
               <Select
+                isClearable
+                required
                 className="w-full"
                 label="Assign To"
                 name="assignedContact"
@@ -73,6 +78,8 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
                 }))}
               />
               <Select
+                isClearable
+                required
                 className="w-full pt-7"
                 label="Tags"
                 name="tag"
