@@ -2,25 +2,17 @@ import React from "react";
 
 import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane } from "neetoui";
-import { Input, Textarea } from "neetoui/formik";
+import { Input, Textarea, Select } from "neetoui/formik";
 
-import notesApi from "apis/notes";
+import { TAGS } from "./constants";
 
-import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
+import { NOTES_FORM_VALIDATION_SCHEMA } from "../../constants";
 
 const Form = ({ onClose, refetch, note, isEdit }) => {
-  const handleSubmit = async values => {
-    try {
-      if (isEdit) {
-        await notesApi.update(note.id, values);
-      } else {
-        await notesApi.create(values);
-      }
-      refetch();
-      onClose();
-    } catch (err) {
-      logger.error(err);
-    }
+  const handleSubmit = values => {
+    // eslint-disable-next-line no-console
+    console.log(values);
+    refetch;
   };
 
   return (
@@ -43,13 +35,22 @@ const Form = ({ onClose, refetch, note, isEdit }) => {
               className="w-full flex-grow-0"
               label="Description"
               name="description"
-              rows={8}
+            />
+            <Select
+              isMulti
+              className="w-full"
+              label="Tags"
+              name="ValueList"
+              placeholder="Select tags - You can choose multiple"
+              options={TAGS.map(tag => ({
+                label: tag,
+                value: tag,
+              }))}
             />
           </Pane.Body>
           <Pane.Footer>
             <Button
               className="mr-3"
-              disabled={isSubmitting}
               label={isEdit ? "Update" : "Save changes"}
               loading={isSubmitting}
               style="primary"

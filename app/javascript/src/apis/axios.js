@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios from "axios";
 import { Toastr } from "neetoui";
 
@@ -5,7 +6,7 @@ import { getFromLocalStorage } from "utils/storage";
 
 axios.defaults.baseURL = "/";
 
-const setAuthHeaders = (setLoading = () => null) => {
+const setAuthHeaders = setLoading => {
   axios.defaults.headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
