@@ -3,9 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Button, PageLoader, NoData } from "neetoui";
 import { Container, Header, Scrollable } from "neetoui/layouts";
 
-import notesApi from "apis/notes";
-
 import Card from "./Card";
+import { NOTES_SEED_VALUES } from "./constants";
 import DeleteAlert from "./DeleteAlert";
 import NewNotePane from "./Pane/Create";
 
@@ -15,26 +14,12 @@ const Notes = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState([{}]);
 
   useEffect(() => {
-    fetchNotes();
+    setNotes([NOTES_SEED_VALUES]);
+    setLoading(false);
   }, []);
-
-  const fetchNotes = async () => {
-    try {
-      setLoading(true);
-      const {
-        data: { notes },
-      } = await notesApi.fetch();
-      setNotes(notes);
-    } catch (error) {
-      // @ts-ignore
-      logger.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   if (loading) {
     return <PageLoader />;
@@ -62,7 +47,16 @@ const Notes = () => {
       />
       {notes.length ? (
         <Scrollable className="neeto-ui-bg-gray-100 w-full space-y-6 p-6">
-          <Card created_at={new Date()} />
+          {notes.map(note => (
+            <Card
+              assignedContactId={note.assignedContactId}
+              created_at={note.created_at}
+              description={note.description}
+              key={`${note.title}1`}
+              tag={note.tag}
+              title={note.title}
+            />
+          ))}
         </Scrollable>
       ) : (
         <div className="flex w-full items-center justify-center">
@@ -77,13 +71,14 @@ const Notes = () => {
         </div>
       )}
       <NewNotePane
-        fetchNotes={fetchNotes}
+        notes={notes}
+        setNotes={setNotes}
         setShowPane={setShowNewNotePane}
         showPane={showNewNotePane}
       />
       {showDeleteAlert && (
         <DeleteAlert
-          refetch={fetchNotes}
+          refetch={undefined}
           selectedNoteIds={selectedNoteIds}
           setSelectedNoteIds={setSelectedNoteIds}
           onClose={() => setShowDeleteAlert(false)}
