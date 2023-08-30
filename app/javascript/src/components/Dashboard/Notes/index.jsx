@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Button, PageLoader, NoData } from "neetoui";
 import { Container, Header, Scrollable } from "neetoui/layouts";
+import { v4 as uuidv4 } from "uuid";
 
 import Card from "./Card";
 import { NOTES_SEED_VALUES } from "./constants";
@@ -51,7 +52,7 @@ const Notes = () => {
               assignedContact={note.assignedContact}
               created_at={note.created_at}
               description={note.description}
-              key={`${note.title}1`}
+              key={uuidv4()}
               setShowDeleteAlert={setShowDeleteAlert}
               tag={note.tag}
               title={note.title}
