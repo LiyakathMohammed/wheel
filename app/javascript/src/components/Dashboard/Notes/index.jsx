@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Button, PageLoader, NoData } from "neetoui";
 import { Container, Header, Scrollable } from "neetoui/layouts";
+import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
 
 import Card from "./Card";
@@ -21,6 +22,8 @@ const Notes = () => {
     setLoading(false);
   }, []);
 
+  const { t } = useTranslation();
+
   if (loading) {
     return <PageLoader />;
   }
@@ -28,12 +31,12 @@ const Notes = () => {
   return (
     <Container>
       <Header
-        menuBarToggle={function noRefCheck() {}}
-        title="Notes"
+        menuBarToggle={() => {}}
+        title={t("header.title", { entity: "All Notes" })}
         actionBlock={
           <Button
             icon="ri-add-line"
-            label="Add note"
+            label={t("header.add", { entity: "Note" })}
             size="small"
             onClick={() => setShowNewNotePane(true)}
           />
@@ -41,7 +44,7 @@ const Notes = () => {
         searchProps={{
           value: searchTerm,
           unlimitedChars: true,
-          placeholder: "Search Name, Email, Phone Number",
+          placeholder: t("header.search"),
           onChange: e => setSearchTerm(e.target.value),
         }}
       />
@@ -64,7 +67,7 @@ const Notes = () => {
           <NoData
             title="There are no Notes to show"
             primaryButtonProps={{
-              label: "Add new ticket",
+              label: t("nodata.label"),
               icon: "ri-add-line",
               onClick: () => setShowNewNotePane(true),
             }}

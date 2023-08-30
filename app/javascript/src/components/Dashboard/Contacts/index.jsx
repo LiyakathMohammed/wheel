@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { MenuVertical } from "neetoicons";
 import { Avatar, Button, Table, Dropdown } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
+import { useTranslation } from "react-i18next";
 
 import { CONTACTS_LIST, COLUMN_DATA } from "./constants";
 import DeleteAlert from "./DeleteAlert";
@@ -13,22 +14,24 @@ const Contacts = () => {
   const [showNewContactPain, setShowNewContactPain] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
+  const { t } = useTranslation();
+
   return (
     <Container>
       <Header
         menuBarToggle={function noRefCheck() {}}
-        title="Contacts"
+        title={t("header.title", { entity: "Contacts" })}
         actionBlock={
           <Button
             icon="ri-add-line"
-            label="Add Contact"
+            label={t("add", { entity: "Contact" })}
             size="small"
             onClick={() => setShowNewContactPain(true)}
           />
         }
         searchProps={{
           unlimitedChars: true,
-          placeholder: "Search Contacts",
+          placeholder: t("header.search"),
         }}
       />
       <Table
@@ -43,15 +46,14 @@ const Contacts = () => {
             <Dropdown
               className="inline-block"
               customTarget={<MenuVertical className="mx-auto cursor-pointer" />}
-              label="Dropdown"
               onClose={function noRefCheck() {}}
             >
               <Dropdown.Menu>
-                <Dropdown.MenuItem.Button>Edit</Dropdown.MenuItem.Button>
+                <Dropdown.MenuItem.Button>{t("edit")}</Dropdown.MenuItem.Button>
                 <Dropdown.MenuItem.Button
                   onClick={() => setShowDeleteAlert(true)}
                 >
-                  Delete
+                  {t("delete")}
                 </Dropdown.MenuItem.Button>
               </Dropdown.Menu>
             </Dropdown>

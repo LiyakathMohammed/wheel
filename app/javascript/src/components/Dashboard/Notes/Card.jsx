@@ -2,6 +2,7 @@ import React from "react";
 
 import { Clock, MenuVertical } from "neetoicons";
 import { Tag, Avatar, Tooltip, Dropdown } from "neetoui";
+import { useTranslation } from "react-i18next";
 
 import { useUserState } from "contexts/user";
 import { getElapsedTime, formatTime } from "utils/time";
@@ -15,6 +16,7 @@ const Card = ({
   setShowDeleteAlert,
 }) => {
   const { user } = useUserState();
+  const { t } = useTranslation();
 
   return (
     <div className="mx-auto w-full overflow-hidden rounded-xl bg-white shadow-md">
@@ -32,11 +34,11 @@ const Card = ({
               onClose={function noRefCheck() {}}
             >
               <Dropdown.Menu>
-                <Dropdown.MenuItem.Button>Edit</Dropdown.MenuItem.Button>
+                <Dropdown.MenuItem.Button>{t("edit")}</Dropdown.MenuItem.Button>
                 <Dropdown.MenuItem.Button
                   onClick={() => setShowDeleteAlert(true)}
                 >
-                  Delete
+                  {t("delete")}
                 </Dropdown.MenuItem.Button>
               </Dropdown.Menu>
             </Dropdown>

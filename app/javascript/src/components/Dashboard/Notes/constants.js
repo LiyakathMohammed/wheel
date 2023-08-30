@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
+import i18n from "common/i18n";
+
 export const NOTES_FORM_INITIAL_VALUES = {
   title: "",
   description: "",
@@ -26,25 +28,45 @@ export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
   title: yup
     .string()
     .min(5, "Title must be at least 5 characters")
-    .required("Title is required"),
+    .required(i18n.t("form.validation.required", { entity: "Title" })),
   description: yup
     .string()
     .min(10, "Description must be at least 10 characters")
-    .required("Description is required"),
+    .required(i18n.t("form.validation.required", { entity: "Description" })),
   assignedContact: yup
     .object()
-    .required("Contact is required")
+    .required(i18n.t("form.validation.required", { entity: "Contact" }))
     .shape({
-      label: yup.string().required("Assigned Contact is required"),
-      value: yup.string().required("Assigned Contact value is required"),
+      label: yup
+        .string()
+        .required(
+          i18n.t("form.validation.required", { entity: "Assigned Contact" })
+        ),
+      value: yup.string().required(
+        i18n.t("form.validation.required", {
+          entity: "Assigned Contact Value",
+        })
+      ),
     })
     .nullable(),
   tag: yup
     .object()
     .shape({
-      label: yup.string().required("Tags is required"),
-      value: yup.string().required("Tags value is required"),
+      label: yup.string().required(
+        i18n.t("form.validation.required", {
+          entity: "Tag",
+        })
+      ),
+      value: yup.string().required(
+        i18n.t("form.validation.required", {
+          entity: "Tag Value",
+        })
+      ),
     })
-    .required("Tag is required")
+    .required(
+      i18n.t("form.validation.required", {
+        entity: "Tag",
+      })
+    )
     .nullable(),
 });

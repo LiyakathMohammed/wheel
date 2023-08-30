@@ -1,0 +1,43 @@
+{
+  "create": "Create a new {{entity}}",
+  "edit": "Edit",
+  "delete": "Delete",
+  "alert": {
+    "message": "Are you sure you want to continue? This cannot be undone.",
+    "title": "Delete {{entity}}"
+  },
+  "form": {
+    "label": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "role": "Role",
+      "title": "Title",
+      "description": "Description",
+      "assign_to": "Assign To",
+      "tag": "Tag"
+    },
+    "validation": {
+      "required": "{{entity}} is Required",
+      "invalid": "Invalid {{entity}} format"
+    },
+    "placeholder": {
+      "enter": "Enter {{entity}}",
+      "select": "Select {{entity}}"
+    }
+  },
+  "toastr": {
+    "success": {
+      "create": "{{entity}} Created  Successfully",
+      "delete": "{{entity}} Deleted  Successfully"
+    }
+  },
+  "header": {
+    "title": "{{entity}}",
+    "search": "Search Name, Email, Phone Number",
+    "add": "Add {{entity}}"
+  },
+  "nodata": {
+    "label": "Add new note"
+  }
+}
