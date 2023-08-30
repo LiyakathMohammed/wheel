@@ -34,6 +34,7 @@ export const AUTH_ROUTES = [
 export const PRIVATE_ROUTES = [{ path: DASHBOARD_PATH, component: Dashboard }];
 
 export const DASHBOARD_ROUTES = [
+  { path: "/", component: Notes },
   {
     path: NOTES_PATH,
     component: Notes,
