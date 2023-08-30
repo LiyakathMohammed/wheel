@@ -5,11 +5,13 @@ import { Avatar, Button, Table, Dropdown } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import { CONTACTS_LIST, COLUMN_DATA } from "./constants";
+import DeleteAlert from "./DeleteAlert";
 import NewContactPane from "./Pane/Create";
 
 const Contacts = () => {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [showNewContactPain, setShowNewContactPain] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   return (
     <Container>
@@ -46,7 +48,11 @@ const Contacts = () => {
             >
               <Dropdown.Menu>
                 <Dropdown.MenuItem.Button>Edit</Dropdown.MenuItem.Button>
-                <Dropdown.MenuItem.Button>Delete</Dropdown.MenuItem.Button>
+                <Dropdown.MenuItem.Button
+                  onClick={() => setShowDeleteAlert(true)}
+                >
+                  Delete
+                </Dropdown.MenuItem.Button>
               </Dropdown.Menu>
             </Dropdown>
           ),
@@ -74,6 +80,9 @@ const Contacts = () => {
         setShowPane={setShowNewContactPain}
         showPane={showNewContactPain}
       />
+      {showDeleteAlert && (
+        <DeleteAlert onClose={() => setShowDeleteAlert(false)} />
+      )}
     </Container>
   );
 };
