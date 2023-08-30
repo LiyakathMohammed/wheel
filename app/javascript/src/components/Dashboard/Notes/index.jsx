@@ -13,7 +13,6 @@ const Notes = () => {
   const [showNewNotePane, setShowNewNotePane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedNoteIds, setSelectedNoteIds] = useState([]);
   const [notes, setNotes] = useState([{}]);
 
   useEffect(() => {
@@ -78,12 +77,7 @@ const Notes = () => {
         showPane={showNewNotePane}
       />
       {showDeleteAlert && (
-        <DeleteAlert
-          refetch={undefined}
-          selectedNoteIds={selectedNoteIds}
-          setSelectedNoteIds={setSelectedNoteIds}
-          onClose={() => setShowDeleteAlert(false)}
-        />
+        <DeleteAlert onClose={() => setShowDeleteAlert(false)} />
       )}
     </Container>
   );
