@@ -5,7 +5,7 @@ import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane, Toastr } from "neetoui";
 import { Input, Textarea, Select } from "neetoui/formik";
 
-import { TAGS } from "./constants";
+import { TAG_OPTIONS, CONTACT_OPTIONS } from "./constants";
 
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../../constants";
 
@@ -25,21 +25,6 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
     setShowPane(false);
     Toastr.success("Note has been added Successfully.");
   };
-
-  const contactList = [
-    {
-      id: 1,
-      name: "Elma Herring",
-      email: "elmaherring@unq.com",
-      phone: "+1 (913) 497-2020",
-    },
-    {
-      id: 2,
-      name: "Knapp Berry",
-      email: "knappberry@unq.com",
-      phone: "+1 (951) 472-2967",
-    },
-  ];
 
   return (
     <Formik
@@ -71,11 +56,8 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
                 className="w-full"
                 label="Assign To"
                 name="assignedContact"
+                options={CONTACT_OPTIONS}
                 placeholder="Select Role"
-                options={contactList.map(contact => ({
-                  label: contact.name,
-                  value: contact.id,
-                }))}
               />
               <Select
                 isClearable
@@ -83,12 +65,9 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
                 className="w-full pt-7"
                 label="Tags"
                 name="tag"
+                options={TAG_OPTIONS}
                 placeholder="Select tag"
                 strategy="fixed"
-                options={TAGS.map(tag => ({
-                  label: tag,
-                  value: tag,
-                }))}
               />
             </div>
           </Pane.Body>
