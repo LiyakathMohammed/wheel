@@ -1,7 +1,7 @@
 import React from "react";
 
+import dayjs from "dayjs";
 import { Formik, Form as FormikForm } from "formik";
-import moment from "moment";
 import { Button, Pane, Toastr } from "neetoui";
 import { Input, Textarea, Select } from "neetoui/formik";
 
@@ -10,15 +10,15 @@ import { TAGS } from "./constants";
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../../constants";
 
 const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
-  const handleSubmit = values => {
+  const handleSubmit = ({ title, description, assignedContact, tag }) => {
     const updatedNotes = [
       ...notes,
       {
-        title: values.title,
-        description: values.description,
-        assignedContact: { ...values.assignedContact },
-        tag: { ...values.tag },
-        created_at: moment().format(),
+        title,
+        description,
+        assignedContact: { ...assignedContact },
+        tag: { ...tag },
+        created_at: dayjs().format(),
       },
     ];
     setNotes(updatedNotes);
