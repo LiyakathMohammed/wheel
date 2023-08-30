@@ -4,12 +4,14 @@ import dayjs from "dayjs";
 import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane, Toastr } from "neetoui";
 import { Input, Textarea, Select } from "neetoui/formik";
+import { useTranslation } from "react-i18next";
 
 import { TAG_OPTIONS, CONTACT_OPTIONS } from "./constants";
 
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../../constants";
 
 const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
+  const { t } = useTranslation();
   const handleSubmit = ({ title, description, assignedContact, tag }) => {
     const updatedNotes = [
       ...notes,
@@ -23,7 +25,7 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
     ];
     setNotes(updatedNotes);
     setShowPane(false);
-    Toastr.success("Note has been added Successfully.");
+    Toastr.success(t("toastr.success.create", { entity: "Note" }));
   };
 
   return (
@@ -38,35 +40,39 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
             <Input
               required
               className="w-full flex-grow-0"
-              label="Title"
+              label={t("form.label.title")}
               name="title"
-              placeholder="Enter Title"
+              placeholder={t("form.placeholder.enter", { entity: "Title" })}
             />
             <Textarea
               required
               className="w-full flex-grow-0"
-              label="Description"
+              label={t("form.label.description")}
               name="description"
-              placeholder="Enter Note Description"
+              placeholder={t("form.placeholder.enter", {
+                entity: "Title Description",
+              })}
             />
             <div className="w-full space-y-0">
               <Select
                 isClearable
                 required
                 className="w-full"
-                label="Assign To"
+                label={t("form.label.assign_to")}
                 name="assignedContact"
                 options={CONTACT_OPTIONS}
-                placeholder="Select Role"
+                placeholder={t("form.placeholder.select", {
+                  entity: "Contact",
+                })}
               />
               <Select
                 isClearable
                 required
                 className="w-full pt-7"
-                label="Tags"
+                label={t("form.label.tag")}
                 name="tag"
                 options={TAG_OPTIONS}
-                placeholder="Select tag"
+                placeholder={t("form.placeholder.select", { entity: "Tag" })}
                 strategy="fixed"
               />
             </div>

@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
+import i18n from "common/i18n";
+
 export const CONTACTS_FORM_INITIAL_VALUES = {
   firstName: "",
   lastName: "",
@@ -8,18 +10,25 @@ export const CONTACTS_FORM_INITIAL_VALUES = {
 };
 
 export const CONTACTS_FORM_VALIDATION_SCHEMA = yup.object().shape({
-  firstName: yup.string().required("firstName is required"),
-  lastName: yup.string().required("lastName is required"),
+  firstName: yup
+    .string()
+    .required(i18n.t("form.validation.required", { entity: "First Name" })),
+  lastName: yup
+    .string()
+    .required(i18n.t("form.validation.required", { entity: "Last Name" })),
   email: yup
     .string()
-    .email("Invalid email format")
-    .required("Email is required"),
+    .required(i18n.t("form.validation.required", { entity: "Email" })),
   role: yup
     .object()
     .shape({
-      label: yup.string().required("Role is required"),
-      value: yup.string().required("Role value is required"),
+      label: yup
+        .string()
+        .required(i18n.t("form.validation.required", { entity: "Role" })),
+      value: yup
+        .string()
+        .required(i18n.t("form.validation.required", { entity: "Role value" })),
     })
-    .required("Role is required")
+    .required(i18n.t("form.validation.required", { entity: "Role" }))
     .nullable(),
 });

@@ -3,15 +3,17 @@ import React from "react";
 import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane, Toastr } from "neetoui";
 import { Input, Select } from "neetoui/formik";
+import { useTranslation } from "react-i18next";
 
 import { ROLE_OPTIONS } from "./constants";
 
 import { CONTACTS_FORM_VALIDATION_SCHEMA } from "../constants";
 
 const Form = ({ onClose, contacts, setShowPane }) => {
+  const { t } = useTranslation();
   const handleSubmit = () => {
     setShowPane(false);
-    Toastr.success("Contact has been added Successfully.");
+    Toastr.success(t("toastr.success.create", { entity: "Contact" }));
   };
 
   return (
@@ -26,33 +28,35 @@ const Form = ({ onClose, contacts, setShowPane }) => {
             <Input
               required
               className="w-full flex-grow-0"
-              label="First Name"
+              label={t("form.label.first_name")}
               name="firstName"
-              placeholder="Enter First Name"
+              placeholder={t("form.placeholder.enter", {
+                entity: "First Name",
+              })}
             />
             <Input
               required
               className="w-full flex-grow-0"
-              label="Last Name"
+              label={t("form.label.last_name")}
               name="lastName"
-              placeholder="Enter Last Name"
+              placeholder={t("form.placeholder.enter", { entity: "Last Name" })}
             />
             <Input
               required
               className="w-full flex-grow-0"
-              label="Email"
+              label={t("form.label.email")}
               name="email"
-              placeholder="Enter Email"
+              placeholder={t("form.placeholder.enter", { entity: "Email" })}
             />
             <div className="w-full space-y-0">
               <Select
                 isClearable
                 required
                 className="w-full"
-                label="Assign To"
+                label={t("form.label.role")}
                 name="role"
                 options={ROLE_OPTIONS}
-                placeholder="Select Role"
+                placeholder={t("form.placeholder.select", { entity: "Role" })}
               />
             </div>
           </Pane.Body>
