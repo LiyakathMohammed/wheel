@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Clock, Delete } from "neetoicons";
-import { Tag, Avatar, Tooltip } from "neetoui";
+import { Clock, MenuVertical } from "neetoicons";
+import { Tag, Avatar, Tooltip, Dropdown } from "neetoui";
 
 import { useUserState } from "contexts/user";
 import { getElapsedTime, formatTime } from "utils/time";
@@ -23,10 +23,24 @@ const Card = ({
           <p className="mt-1 inline-block text-lg font-medium leading-tight text-black">
             {title}
           </p>
-          <Delete
-            className="inline-block"
-            onClick={() => setShowDeleteAlert(true)}
-          />
+          <div className="float-right inline-block">
+            <Dropdown
+              buttonProps={{}}
+              className="inline-block"
+              customTarget={<MenuVertical className="cursor-pointer" />}
+              label="Dropdown"
+              onClose={function noRefCheck() {}}
+            >
+              <Dropdown.Menu>
+                <Dropdown.MenuItem.Button>Edit</Dropdown.MenuItem.Button>
+                <Dropdown.MenuItem.Button
+                  onClick={() => setShowDeleteAlert(true)}
+                >
+                  Delete
+                </Dropdown.MenuItem.Button>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
           <p className="border-grey my-3 mt-2 block w-full border-b-2 pb-4 text-gray-600">
             {description}
           </p>
