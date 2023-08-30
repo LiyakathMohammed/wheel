@@ -9,8 +9,6 @@ import { CONTACTS_LIST, COLUMN_DATA } from "./constants";
 const Contacts = () => {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
 
-  const handlePageChange = page => setCurrentPageNumber(page);
-
   return (
     <Container>
       <Header
@@ -29,12 +27,11 @@ const Contacts = () => {
         columnData={COLUMN_DATA}
         currentPageNumber={currentPageNumber}
         defaultPageSize={10}
-        handlePageChange={handlePageChange}
+        handlePageChange={page => setCurrentPageNumber(page)}
         rowData={CONTACTS_LIST.map(contact => ({
           ...contact,
           icon_button: (
             <Dropdown
-              buttonProps={{}}
               className="inline-block"
               customTarget={<MenuVertical className="mx-auto cursor-pointer" />}
               label="Dropdown"
@@ -46,21 +43,25 @@ const Contacts = () => {
               </Dropdown.Menu>
             </Dropdown>
           ),
-          name: [
-            <Avatar
-              className="mr-2 inline"
-              key={contact.id}
-              size="medium"
-              user={{
-                imageUrl: "https://i.pravatar.cc/300",
-                name: "neeto",
-              }}
-              onClick={function noRefCheck() {}}
-            />,
-            contact.name,
-          ],
+          name: (
+            <div className="flex items-center" key={contact.id}>
+              <Avatar
+                className="mr-2 inline"
+                size="medium"
+                user={{
+                  imageUrl: "https://i.pravatar.cc/300",
+                  name: "neeto",
+                }}
+                onClick={() => {}}
+              />
+              <div>
+                <span className="block">{contact.name}</span>
+                <span className="block text-gray-500">{contact.role}</span>
+              </div>
+            </div>
+          ),
         }))}
-        onRowSelect={function noRefCheck() {}}
+        onRowSelect={() => {}}
       />
     </Container>
   );

@@ -50,7 +50,7 @@ const Notes = () => {
           {notes.map(note => (
             <Card
               assignedContact={note.assignedContact}
-              created_at={note.created_at}
+              createdAt={note.createdAt}
               description={note.description}
               key={uuidv4()}
               setShowDeleteAlert={setShowDeleteAlert}
