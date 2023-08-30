@@ -5,9 +5,11 @@ import { Avatar, Button, Table, Dropdown } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import { CONTACTS_LIST, COLUMN_DATA } from "./constants";
+import NewContactPane from "./Pane/Create";
 
 const Contacts = () => {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [showNewContactPain, setShowNewContactPain] = useState(false);
 
   return (
     <Container>
@@ -15,7 +17,12 @@ const Contacts = () => {
         menuBarToggle={function noRefCheck() {}}
         title="Contacts"
         actionBlock={
-          <Button icon="ri-add-line" label="Add Contact" size="small" />
+          <Button
+            icon="ri-add-line"
+            label="Add Contact"
+            size="small"
+            onClick={() => setShowNewContactPain(true)}
+          />
         }
         searchProps={{
           unlimitedChars: true,
@@ -62,6 +69,10 @@ const Contacts = () => {
           ),
         }))}
         onRowSelect={() => {}}
+      />
+      <NewContactPane
+        setShowPane={setShowNewContactPain}
+        showPane={showNewContactPain}
       />
     </Container>
   );
