@@ -1,10 +1,10 @@
 import React from "react";
 
-import moment from "moment";
 import { Clock, Delete } from "neetoicons";
 import { Tag, Avatar, Tooltip } from "neetoui";
 
 import { useUserState } from "contexts/user";
+import { getElapsedTime, formatTime } from "utils/time";
 
 const Card = ({
   title,
@@ -34,11 +34,8 @@ const Card = ({
             <Tag className="mt-2" label={tag.value} />
             <p className="mt-2 flex items-center text-sm text-gray-600">
               <Clock className="mr-1 h-4 w-4" />
-              <Tooltip
-                content={moment(created_at).format("dddd, h:mm a")}
-                position="bottom"
-              >
-                {moment.utc(created_at).local().startOf("seconds").fromNow()}
+              <Tooltip content={formatTime(created_at)} position="bottom">
+                {getElapsedTime(created_at)}
               </Tooltip>
               <Avatar
                 className="ml-2"
