@@ -11,7 +11,7 @@ const Card = ({
   description,
   assignedContact,
   tag,
-  created_at,
+  createdAt,
   setShowDeleteAlert,
 }) => {
   const { user } = useUserState();
@@ -48,8 +48,8 @@ const Card = ({
             <Tag className="mt-2" label={tag.value} />
             <p className="mt-2 flex items-center text-sm text-gray-600">
               <Clock className="mr-1 h-4 w-4" />
-              <Tooltip content={formatTime(created_at)} position="bottom">
-                {getElapsedTime(created_at)}
+              <Tooltip content={formatTime(createdAt)} position="bottom">
+                {getElapsedTime(createdAt)}
               </Tooltip>
               <Avatar
                 className="ml-2"

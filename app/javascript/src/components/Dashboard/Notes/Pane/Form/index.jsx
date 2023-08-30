@@ -16,9 +16,9 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
       {
         title,
         description,
-        assignedContact: { ...assignedContact },
-        tag: { ...tag },
-        created_at: dayjs().format(),
+        assignedContact,
+        tag,
+        createdAt: dayjs(),
       },
     ];
     setNotes(updatedNotes);

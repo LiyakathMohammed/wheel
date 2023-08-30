@@ -19,7 +19,7 @@ export const NOTES_SEED_VALUES = {
     label: "UX",
     value: "UX",
   },
-  created_at: "2023-08-29T19:01:08+05:30",
+  createdAt: "2023-08-29T19:01:08+05:30",
 };
 
 export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
