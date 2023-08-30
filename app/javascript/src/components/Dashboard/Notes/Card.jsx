@@ -2,14 +2,14 @@ import React from "react";
 
 import moment from "moment";
 import { Clock, Delete } from "neetoicons";
-import { Tag, Avatar } from "neetoui";
+import { Tag, Avatar, Tooltip } from "neetoui";
 
 import { useUserState } from "contexts/user";
 
 const Card = ({
   title,
   description,
-  assignedContactId,
+  assignedContact,
   tag,
   created_at,
   setShowDeleteAlert,
