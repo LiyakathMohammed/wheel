@@ -17,12 +17,7 @@ const Contacts = () => {
         menuBarToggle={function noRefCheck() {}}
         title="Contacts"
         actionBlock={
-          <Button
-            icon="ri-add-line"
-            label="Add Contact"
-            size="small"
-            // onClick={() => setShowNewContactPane(true)}
-          />
+          <Button icon="ri-add-line" label="Add Contact" size="small" />
         }
         searchProps={{
           unlimitedChars: true,
