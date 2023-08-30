@@ -24,7 +24,7 @@ const Contacts = () => {
         actionBlock={
           <Button
             icon="ri-add-line"
-            label={t("add", { entity: "Contact" })}
+            label={t("header.add", { entity: "Contact" })}
             size="small"
             onClick={() => setShowNewContactPain(true)}
           />
