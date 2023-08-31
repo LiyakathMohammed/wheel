@@ -3,19 +3,20 @@ import React, { useState, useEffect } from "react";
 import { Button, PageLoader, NoData } from "neetoui";
 import { Container, Header, Scrollable } from "neetoui/layouts";
 import { useTranslation } from "react-i18next";
-import { v4 as uuidv4 } from "uuid";
 
 import Card from "./Card";
 import { NOTES_SEED_VALUES } from "./constants";
 import DeleteAlert from "./DeleteAlert";
 import NewNotePane from "./Pane/Create";
+import { getNotetitle } from "./utils";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
   const [showNewNotePane, setShowNewNotePane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [notes, setNotes] = useState([{}]);
+  const [notes, setNotes] = useState([]);
+  const [deleteNoteId, setDeleteNoteId] = useState("");
 
   useEffect(() => {
     setNotes([NOTES_SEED_VALUES]);
@@ -55,7 +56,9 @@ const Notes = () => {
               assignedTo={note.assignedTo}
               createdAt={note.createdAt}
               description={note.description}
-              key={uuidv4()}
+              id={note.id}
+              key={note.id}
+              setDeleteNoteId={setDeleteNoteId}
               setShowDeleteAlert={setShowDeleteAlert}
               tag={note.tag}
               title={note.title}
@@ -65,7 +68,7 @@ const Notes = () => {
       ) : (
         <div className="flex w-full items-center justify-center">
           <NoData
-            title="There are no Notes to show"
+            title={t("nodata.title", { entity: "Notes" })}
             primaryButtonProps={{
               label: t("nodata.label"),
               icon: "ri-add-line",
@@ -81,7 +84,10 @@ const Notes = () => {
         showPane={showNewNotePane}
       />
       {showDeleteAlert && (
-        <DeleteAlert onClose={() => setShowDeleteAlert(false)} />
+        <DeleteAlert
+          title={getNotetitle(notes, deleteNoteId)}
+          onClose={() => setShowDeleteAlert(false)}
+        />
       )}
     </Container>
   );

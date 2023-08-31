@@ -7,11 +7,11 @@ import { useTranslation } from "react-i18next";
 import { CONTACTS_LIST, COLUMN_DATA } from "./constants";
 import DeleteAlert from "./DeleteAlert";
 import NewContactPane from "./Pane/Create";
-import transformContactData from "./utils";
+import buildContactData from "./utils";
 
 const Contacts = () => {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
-  const [showNewContactPain, setShowNewContactPain] = useState(false);
+  const [showNewContactPane, setShowNewContactPane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ const Contacts = () => {
             icon="ri-add-line"
             label={t("header.add", { entity: "Contact" })}
             size="small"
-            onClick={() => setShowNewContactPain(true)}
+            onClick={() => true}
           />
         }
         searchProps={{
@@ -40,12 +40,11 @@ const Contacts = () => {
         currentPageNumber={currentPageNumber}
         defaultPageSize={10}
         handlePageChange={page => setCurrentPageNumber(page)}
-        rowData={transformContactData(CONTACTS_LIST, t, setShowDeleteAlert)}
-        onRowSelect={() => {}}
+        rowData={buildContactData(CONTACTS_LIST, t, setShowDeleteAlert)}
       />
       <NewContactPane
-        setShowPane={setShowNewContactPain}
-        showPane={showNewContactPain}
+        setShowPane={setShowNewContactPane}
+        showPane={showNewContactPane}
       />
       {showDeleteAlert && (
         <DeleteAlert onClose={() => setShowDeleteAlert(false)} />
