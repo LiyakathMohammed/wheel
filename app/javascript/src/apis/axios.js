@@ -6,7 +6,7 @@ import { getFromLocalStorage } from "utils/storage";
 
 axios.defaults.baseURL = "/";
 
-const setAuthHeaders = setLoading => {
+const setAuthHeaders = (setLoading = () => null) => {
   axios.defaults.headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
