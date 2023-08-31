@@ -5,12 +5,13 @@ import { Tag, Avatar, Tooltip, Dropdown } from "neetoui";
 import { useTranslation } from "react-i18next";
 
 import { useUserState } from "contexts/user";
-import { getElapsedTime, formatTime } from "utils/time";
+
+import { getElapsedTime, formatTime } from "./utils";
 
 const Card = ({
   title,
   description,
-  assignedContact,
+  assignedTo,
   tag,
   createdAt,
   setShowDeleteAlert,
@@ -57,7 +58,7 @@ const Card = ({
                 className="ml-2"
                 size="small"
                 user={{
-                  name: `${user.first_name} ${user.last_name} ${assignedContact.value}`,
+                  name: `${user.first_name} ${user.last_name} ${assignedTo.value}`,
                   imageUrl: user.profile_image_path,
                 }}
               />
