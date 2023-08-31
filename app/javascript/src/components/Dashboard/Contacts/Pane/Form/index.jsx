@@ -65,11 +65,16 @@ const Form = ({ onClose, setShowPane }) => {
           <Pane.Footer>
             <Button
               className="mr-3"
-              label="Save Contact"
+              label={t("button.label.save", { entity: "contact" })}
               style="primary"
               type="submit"
             />
-            <Button label="Cancel" style="text" onClick={onClose} />
+            <Button
+              label={t("button.label.cancel")}
+              style="text"
+              type="reset"
+              onClick={onClose}
+            />
           </Pane.Footer>
         </FormikForm>
       )}

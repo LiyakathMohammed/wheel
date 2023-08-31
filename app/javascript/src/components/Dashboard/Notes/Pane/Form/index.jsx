@@ -5,6 +5,7 @@ import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane, Toastr } from "neetoui";
 import { Input, Textarea, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   TAG_OPTIONS,
@@ -24,6 +25,7 @@ const Form = ({ onClose, isEdit, setShowPane, notes, setNotes }) => {
         assignedTo,
         tag,
         createdAt: dayjs(),
+        id: uuidv4(),
       },
     ];
     setNotes(updatedNotes);
@@ -58,7 +60,6 @@ const Form = ({ onClose, isEdit, setShowPane, notes, setNotes }) => {
             />
             <div className="w-full space-y-0">
               <Select
-                isClearable
                 required
                 className="w-full"
                 label={t("form.label.assign_to")}
@@ -87,7 +88,12 @@ const Form = ({ onClose, isEdit, setShowPane, notes, setNotes }) => {
               style="primary"
               type="submit"
             />
-            <Button label="Cancel" style="text" onClick={onClose} />
+            <Button
+              label={t("button.label.cancel")}
+              style="text"
+              type="reset"
+              onClick={onClose}
+            />
           </Pane.Footer>
         </FormikForm>
       )}

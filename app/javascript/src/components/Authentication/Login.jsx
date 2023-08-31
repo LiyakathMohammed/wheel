@@ -4,6 +4,7 @@ import { Form, Formik } from "formik";
 import { Button } from "neetoui";
 import { Input } from "neetoui/formik";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 import authenticationApi from "apis/authentication";
 import {
@@ -22,6 +23,7 @@ import {
 const Login = ({ history }) => {
   const authDispatch = useAuthDispatch();
   const userDispatch = useUserDispatch();
+  const { t } = useTranslation();
 
   const handleSubmit = async ({ email, password }) => {
     try {
@@ -40,7 +42,7 @@ const Login = ({ history }) => {
     <div className="neeto-ui-bg-gray-100 flex h-screen w-screen flex-row items-center justify-center overflow-y-auto overflow-x-hidden p-6">
       <div className="mx-auto flex h-full w-full flex-col items-center justify-center sm:max-w-md">
         <h2 className="neeto-ui-text-gray-800 mb-5 text-center text-3xl font-extrabold">
-          Sign In
+          {t("signin")}
         </h2>
         <Formik
           initialValues={LOGIN_FORM_INITIAL_VALUES}
@@ -52,17 +54,17 @@ const Login = ({ history }) => {
               <Input
                 required
                 data-cy="login-email-text-field"
-                label="Email"
+                label={t("form.label.email")}
                 name="email"
-                placeholder="oliver@example.com"
+                placeholder={t("form.placeholder.example_email")}
                 type="email"
               />
               <Input
                 required
                 data-cy="login-password-text-field"
-                label="Password"
+                label={t("form.label.password")}
                 name="password"
-                placeholder="******"
+                placeholder={t("form.placeholder.password")}
                 type="password"
               />
               <Button
@@ -70,7 +72,7 @@ const Login = ({ history }) => {
                 className="h-8"
                 data-cy="login-submit-button"
                 disabled={isSubmitting}
-                label="Login"
+                label={t("form.label.login")}
                 loading={isSubmitting}
                 size="small"
                 type="submit"
@@ -81,11 +83,11 @@ const Login = ({ history }) => {
         <div className="mt-4 flex flex-col items-center justify-center space-y-2">
           <div className="flex flex-row items-center justify-start space-x-1">
             <p className="neeto-ui-text-gray-600 font-normal">
-              Don't have an account?
+              {t("form.dont_have_account")}
             </p>
             <Button
               data-cy="sign-up-link"
-              label="Signup"
+              label={t("form.label.signup")}
               size="small"
               style="link"
               to={SIGNUP_PATH}
@@ -93,7 +95,7 @@ const Login = ({ history }) => {
           </div>
           <Button
             data-cy="forgot-password-link"
-            label="Forgot password?"
+            label={t("form.label.forgot_password")}
             size="small"
             style="link"
             to={RESET_PASSWORD_PATH}

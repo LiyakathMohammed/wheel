@@ -3,7 +3,7 @@ import React from "react";
 import { MenuVertical } from "neetoicons";
 import { Dropdown, Avatar } from "neetoui";
 
-const transformContactData = (contacts, t, setShowDeleteAlert) =>
+const buildContactData = (contacts, t, setShowDeleteAlert) =>
   contacts.map(contact => ({
     ...contact,
     icon_button: (
@@ -29,7 +29,6 @@ const transformContactData = (contacts, t, setShowDeleteAlert) =>
             imageUrl: "https://i.pravatar.cc/300",
             name: "neeto",
           }}
-          onClick={() => {}}
         />
         <div>
           <span className="block">{contact.name}</span>
@@ -39,4 +38,4 @@ const transformContactData = (contacts, t, setShowDeleteAlert) =>
     ),
   }));
 
-export default transformContactData;
+export default buildContactData;

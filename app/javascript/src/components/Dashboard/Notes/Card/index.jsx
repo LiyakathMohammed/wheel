@@ -9,39 +9,44 @@ import { useUserState } from "contexts/user";
 import { getElapsedTime, formatTime } from "./utils";
 
 const Card = ({
+  id,
   title,
   description,
   assignedTo,
   tag,
   createdAt,
   setShowDeleteAlert,
+  setDeleteNoteId,
 }) => {
   const { user } = useUserState();
   const { t } = useTranslation();
+  const { Menu, MenuItem } = Dropdown;
+  const { Button } = MenuItem;
+
+  const handleDelete = () => {
+    setDeleteNoteId(id);
+    setShowDeleteAlert(true);
+  };
 
   return (
     <div className="mx-auto w-full overflow-hidden rounded-xl bg-white shadow-md">
-      <div className="w-full md:flex">
+      <div className="justify-content-between w-full md:flex">
         <div className="w-full p-8">
           <p className="mt-1 inline-block text-lg font-medium leading-tight text-black">
             {title}
           </p>
           <div className="float-right inline-block">
             <Dropdown
-              buttonProps={{}}
               className="inline-block"
-              customTarget={<MenuVertical className="cursor-pointer" />}
               label="Dropdown"
-              onClose={function noRefCheck() {}}
+              customTarget={
+                <MenuVertical className="float-right cursor-pointer" />
+              }
             >
-              <Dropdown.Menu>
-                <Dropdown.MenuItem.Button>{t("edit")}</Dropdown.MenuItem.Button>
-                <Dropdown.MenuItem.Button
-                  onClick={() => setShowDeleteAlert(true)}
-                >
-                  {t("delete")}
-                </Dropdown.MenuItem.Button>
-              </Dropdown.Menu>
+              <Menu>
+                <Button>{t("edit")}</Button>
+                <Button onClick={handleDelete}>{t("delete")}</Button>
+              </Menu>
             </Dropdown>
           </div>
           <p className="border-grey my-3 mt-2 block w-full border-b-2 pb-4 text-gray-600">
