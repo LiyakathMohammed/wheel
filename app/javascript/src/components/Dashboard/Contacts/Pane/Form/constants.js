@@ -34,5 +34,5 @@ export const CONTACTS_FORM_INITIAL_VALUES = {
   firstName: "",
   lastName: "",
   email: "",
-  role: [],
+  role: null,
 };
