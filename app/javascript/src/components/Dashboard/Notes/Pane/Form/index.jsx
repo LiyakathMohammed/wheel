@@ -6,19 +6,22 @@ import { Button, Pane, Toastr } from "neetoui";
 import { Input, Textarea, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
 
-import { TAG_OPTIONS, CONTACT_OPTIONS } from "./constants";
+import {
+  TAG_OPTIONS,
+  CONTACT_OPTIONS,
+  NOTES_FORM_VALIDATION_SCHEMA,
+  NOTES_FORM_INITIAL_VALUES,
+} from "./constants";
 
-import { NOTES_FORM_VALIDATION_SCHEMA } from "../../constants";
-
-const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
+const Form = ({ onClose, isEdit, setShowPane, notes, setNotes }) => {
   const { t } = useTranslation();
-  const handleSubmit = ({ title, description, assignedContact, tag }) => {
+  const handleSubmit = ({ title, description, assignedTo, tag }) => {
     const updatedNotes = [
       ...notes,
       {
         title,
         description,
-        assignedContact,
+        assignedTo,
         tag,
         createdAt: dayjs(),
       },
@@ -30,7 +33,7 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
 
   return (
     <Formik
-      initialValues={note}
+      initialValues={NOTES_FORM_INITIAL_VALUES}
       validationSchema={NOTES_FORM_VALIDATION_SCHEMA}
       onSubmit={handleSubmit}
     >
@@ -59,7 +62,7 @@ const Form = ({ onClose, note, isEdit, setShowPane, notes, setNotes }) => {
                 required
                 className="w-full"
                 label={t("form.label.assign_to")}
-                name="assignedContact"
+                name="assignedTo"
                 options={CONTACT_OPTIONS}
                 placeholder={t("form.placeholder.select", {
                   entity: "Contact",

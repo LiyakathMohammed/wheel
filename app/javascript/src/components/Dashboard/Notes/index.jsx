@@ -52,7 +52,7 @@ const Notes = () => {
         <Scrollable className="neeto-ui-bg-gray-100 w-full space-y-6 p-6">
           {notes.map(note => (
             <Card
-              assignedContact={note.assignedContact}
+              assignedTo={note.assignedTo}
               createdAt={note.createdAt}
               description={note.description}
               key={uuidv4()}

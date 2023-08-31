@@ -5,11 +5,13 @@ import { Button, Pane, Toastr } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
 
-import { ROLE_OPTIONS } from "./constants";
+import {
+  ROLE_OPTIONS,
+  CONTACTS_FORM_VALIDATION_SCHEMA,
+  CONTACTS_FORM_INITIAL_VALUES,
+} from "./constants";
 
-import { CONTACTS_FORM_VALIDATION_SCHEMA } from "../constants";
-
-const Form = ({ onClose, contacts, setShowPane }) => {
+const Form = ({ onClose, setShowPane }) => {
   const { t } = useTranslation();
   const handleSubmit = () => {
     setShowPane(false);
@@ -18,7 +20,7 @@ const Form = ({ onClose, contacts, setShowPane }) => {
 
   return (
     <Formik
-      initialValues={contacts}
+      initialValues={CONTACTS_FORM_INITIAL_VALUES}
       validationSchema={CONTACTS_FORM_VALIDATION_SCHEMA}
       onSubmit={handleSubmit}
     >
