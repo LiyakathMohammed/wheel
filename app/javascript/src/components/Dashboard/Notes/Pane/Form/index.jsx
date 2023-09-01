@@ -1,11 +1,9 @@
 import React from "react";
 
-import dayjs from "dayjs";
 import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane, Toastr } from "neetoui";
 import { Input, Textarea, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
-import { v4 as uuidv4 } from "uuid";
 
 import {
   TAG_OPTIONS,
@@ -13,6 +11,7 @@ import {
   NOTES_FORM_VALIDATION_SCHEMA,
   NOTES_FORM_INITIAL_VALUES,
 } from "./constants";
+import { getCurrentDateTime, getUniqueId } from "./utils";
 
 const Form = ({ onClose, isEdit, setShowPane, notes, setNotes }) => {
   const { t } = useTranslation();
@@ -24,8 +23,8 @@ const Form = ({ onClose, isEdit, setShowPane, notes, setNotes }) => {
         description,
         assignedTo,
         tag,
-        createdAt: dayjs(),
-        id: uuidv4(),
+        createdAt: getCurrentDateTime(),
+        id: getUniqueId(),
       },
     ];
     setNotes(updatedNotes);
